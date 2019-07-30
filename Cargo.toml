@@ -1,0 +1,12 @@
+[package]
+name = "tee_readwrite"
+version = "0.1.0"
+authors = ["museun <museun@outlook.com>"]
+repository = "https://github.com/museun/tee_readwrite"
+readme = "README.md"
+edition = "2018"
+description = "Simple TeeReader/TeeWriter types for duplicating reads/writes to std::io::{Read,Write} types"
+keywords = [ "tee" ]
+license = "0BSD"
+
+[dependencies]
