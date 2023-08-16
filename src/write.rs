@@ -35,11 +35,13 @@ impl<L, R> TeeWriter<L, R> {
 impl<L: Write, R: Write> Write for TeeWriter<L, R> {
     fn write(&mut self, buf: &[u8]) -> Result<usize> {
         let n = self.write.write(buf)?;
-        let _ = self.output.write(&buf[..n])?;
+        self.output.write_all(&buf[..n])?;
         Ok(n)
     }
 
     fn flush(&mut self) -> Result<()> {
-        self.write.flush()
+        let x = self.write.flush();
+        let y = self.output.flush();
+        x.and(y)
     }
 }
